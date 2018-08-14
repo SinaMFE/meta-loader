@@ -1,0 +1,32 @@
+{
+  "name": "meta-loader",
+  "description": "a preprocess loader to get metaData and inject runtime code",
+  "version": "0.1.0",
+  "main": "dist/index",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@types/lodash": "^4.14.113",
+    "@types/node": "^10.5.2",
+    "@types/webpack": "4.4.9",
+    "axios": "0.18.0",
+    "chalk": "^2.4.1",
+    "html-parse-stringify2": "2.0.1",
+    "lodash": "^4.17.10",
+    "ts-node": "^7.0.0",
+    "typescript": "^2.9.2",
+    "webpack": "4.16.5"
+  },
+  "scripts": {
+    "prepublishOnly": "tsc"
+  },
+  "author": {
+    "name": "huguang",
+    "email": "guangyu9@staff.sina.com.cn"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:SinaMFE/meta-loader.git"
+  }
+}
