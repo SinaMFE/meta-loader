@@ -14,7 +14,7 @@ export default async function getMetaFromFtp() {
     fs.mkdirSync(dirname);
   }
 
-  fs.readFileSync(resultPath, JSON.stringify(res.data));
+  fs.writeFileSync(resultPath, JSON.stringify(res.data));
   // res.data.pipe(fs.createWriteStream(resultPath));
 }
 

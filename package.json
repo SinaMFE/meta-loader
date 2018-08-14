@@ -1,7 +1,7 @@
 {
   "name": "meta-loader",
   "description": "a preprocess loader to get metaData and inject runtime code",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "main": "dist/index",
   "files": [
     "dist"

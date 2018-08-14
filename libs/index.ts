@@ -35,7 +35,17 @@ export default function loader(
       (this._compiler as any).maraContext = {};
     }
 
-    (this._compiler as any).maraContext.dataSource = result.manifest;
+    const maraContext = (this._compiler as any).maraContext;
+
+    if (!("dataSource" in maraContext)) {
+      maraContext.dataSource = {};
+    }
+
+    const dataSource = maraContext.dataSource;
+
+    if (!(Object.keys(result.manifest).length === 0)) {
+      Object.assign(dataSource, result.manifest);
+    }
 
     callback && callback(null, result.source);
   });

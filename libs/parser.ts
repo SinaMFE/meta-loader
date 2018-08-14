@@ -3,10 +3,9 @@ import * as fs from "fs";
 import * as path from "path";
 import * as lodash from "lodash";
 import { GlobalStorage, GlobalStorageItem } from "../types/decorator";
+import { sourceDataType } from "./config";
 
 let uniqueKey = 0;
-
-const sourceDataType = "dataSource";
 
 interface HtmlNode {
   attrs?: HtmlAttrs;
@@ -94,6 +93,7 @@ function handleNode(manifest: any, meta: GlobalStorage, node: HtmlNode) {
 
       // determine attribute is a datasource type
       if (classPropertyItem && classPropertyItem.type === sourceDataType) {
+
         const injectedKeyObj = getInjectedUniqueKeyObj(key, value);
 
         const attrValueStr = JSON.stringify(injectedKeyObj);
@@ -110,8 +110,20 @@ function handleNode(manifest: any, meta: GlobalStorage, node: HtmlNode) {
 function saveDataSourceInfo(manifest: any, key: string, value: any): void {
   // save to manifest.json
 
+  if (!("dsConf" in value)) {
+    throw new Error(
+      `[template parser] ${key} is a dataSource type but content of ${key} doesn't contain property "dsConf"`
+    );
+  }
+
+  const { url, method, cache, data, timeout } = value.dsConf;
+
   manifest[value.key] = {
-    api: value.api
+    api: url,
+    method,
+    cache,
+    data,
+    timeout
   };
 }
 
